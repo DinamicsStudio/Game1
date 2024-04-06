@@ -33,5 +33,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(rb.position + transform.forward * dashDistance);
         }
+        /*if(Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(transform.up*100000,ForceMode.Impulse);
+        }*/
     }
 }
