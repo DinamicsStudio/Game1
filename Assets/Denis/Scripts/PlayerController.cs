@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public Camera cam;
     private Rigidbody rb;
     public float dashDistance;
+    public Vector3 mousePos;
 
     private void Start()
     {
@@ -15,12 +17,18 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f));
-        transform.LookAt(worldPosition);
+        /*mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 LookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(LookDir.x, LookDir.y) * Mathf.Rad2Deg;
+        Quaternion.LookRotation(LookDir);*/
 
         Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         rb.velocity = moveInput * speed;
+        if (moveInput != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveInput); // Вычисляем целевой поворот в сторону движения
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // Плавно поворачиваем персонаж в сторону целевого поворота
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             rb.MovePosition(rb.position + transform.forward * dashDistance);
