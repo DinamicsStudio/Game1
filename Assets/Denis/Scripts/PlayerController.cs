@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -27,21 +27,23 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveInput * speed;
         if (moveInput != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveInput); // Вычисляем целевой поворот в сторону движения
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // Плавно поворачиваем персонаж в сторону целевого поворота
+            Quaternion targetRotation = Quaternion.LookRotation(moveInput); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             rb.MovePosition(rb.position + transform.forward * dashDistance);
         }
+        
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded==true)
         {
-            rb.AddForce(transform.up*100, ForceMode.Impulse);
-        }   
+            rb.AddForce(transform.up*100,ForceMode.Impulse);
+        }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("floor")==true)
+        if (other.CompareTag("floor") == true)
         {
             isGrounded = true;
         }
@@ -54,3 +56,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
