@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public float dashDistance;
     public Vector3 mousePos;
+    public bool isGrounded;
 
     private void Start()
     {
@@ -33,9 +34,23 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(rb.position + transform.forward * dashDistance);
         }
-        /*if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded==true)
         {
-            rb.AddForce(transform.up*100000,ForceMode.Impulse);
-        }*/
+            rb.AddForce(transform.up*100, ForceMode.Impulse);
+        }   
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("floor")==true)
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("floor") == true)
+        {
+            isGrounded = false;
+        }
     }
 }
