@@ -36,9 +36,18 @@ public class ItemPickUp : MonoBehaviour
     }
     void PickUp(Transform item)
     {
+<<<<<<< HEAD
         item.position = ItemPos.position;
         item.SetParent(transform);
         item.GetComponent<Rigidbody>().isKinematic = true;
         item.GetComponent<Collider>().enabled = false;
+=======
+        
+            item.SetParent(transform);
+            item.GetComponent<Rigidbody>().isKinematic = true;
+            item.GetComponent<Collider>().enabled = false;
+        
+        
+>>>>>>> e3fdb5abbeaa349a30b9b87cc558cc1b312b3948
     }
 }

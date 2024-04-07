@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - floor
+  - quest
   layers:
   - Default
   - TransparentFX
