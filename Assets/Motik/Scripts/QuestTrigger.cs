@@ -19,6 +19,7 @@ public class QuestTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             questUI.SetActive(false);   
+            
         }
     }
     void Start()
