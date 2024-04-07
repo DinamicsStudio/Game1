@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float dashDistance;
     public Vector3 mousePos;
     public bool isGrounded;
+    public static bool canmove = true;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
 
         Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveInput.Normalize();
-        rb.velocity = moveInput * speed;
+        if(canmove)rb.velocity = moveInput * speed;
         if (moveInput != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveInput); // ��������� ������� ������� � ������� ��������

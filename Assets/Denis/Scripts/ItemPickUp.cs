@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class ItemPickUp : MonoBehaviour
 {
@@ -10,6 +7,7 @@ public class ItemPickUp : MonoBehaviour
     public Transform UpItem;
     public Transform ItemPos;
     public bool usable;
+    [SerializeField]
     public static bool isPicked = false;
     private void OnTriggerEnter(Collider other)
     {
