@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7975936214719857913}
   - component: {fileID: 1432041554078311484}
   - component: {fileID: -516930169071225382}
-  - component: {fileID: -8288363361811876451}
+  - component: {fileID: 4448250694065535274}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
---- !u!54 &-8288363361811876451
+  delay: 15
+--- !u!54 &4448250694065535274
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,5 +146,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 62
+  m_Constraints: 0
   m_CollisionDetection: 0
