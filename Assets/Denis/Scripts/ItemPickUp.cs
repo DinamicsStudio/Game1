@@ -9,7 +9,6 @@ public class ItemPickUp : MonoBehaviour
     public bool usable;
     [SerializeField]
     public static bool isPicked = false;
-    
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Item"))
@@ -41,7 +40,7 @@ public class ItemPickUp : MonoBehaviour
     void PickUp(Transform item)
     {
         isPicked = true;
-        //OldParent = item.parent;
+        OldParent = item.parent;
         item.position = ItemPos.position;
         item.SetParent(transform);
         item.GetComponent<Rigidbody>().isKinematic = true;
@@ -52,7 +51,7 @@ public class ItemPickUp : MonoBehaviour
     {
         isPicked = false;
         UpItem = null;
-        item.SetParent(null);
+        item.SetParent(OldParent);
         item.GetComponent<Rigidbody>().isKinematic = false;
         item.GetComponent<Collider>().enabled = true;
     }
