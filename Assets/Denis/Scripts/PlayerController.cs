@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         Quaternion.LookRotation(LookDir);*/
 
         Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        moveInput.Normalize();
         rb.velocity = moveInput * speed;
         if (moveInput != Vector3.zero)
         {
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded==true)
         {
-            rb.AddForce(transform.up*100,ForceMode.Impulse);
+            rb.AddForce(transform.up*1000,ForceMode.Impulse);
         }
     }
 
