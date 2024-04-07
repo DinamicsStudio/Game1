@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class ItemPickUp : MonoBehaviour
 {
+    public Transform OldParent;
     public Transform UpItem;
     public Transform ItemPos;
     public bool usable;
@@ -32,19 +33,25 @@ public class ItemPickUp : MonoBehaviour
         {
             PickUp(UpItem);
         }
-
+        if(Input.GetKeyDown(KeyCode.Q) && UpItem!=null)
+        {
+            PickDown(UpItem);
+        }
     }
     void PickUp(Transform item)
     {
-
+        OldParent = item.parent;
         item.position = ItemPos.position;
         item.SetParent(transform);
         item.GetComponent<Rigidbody>().isKinematic = true;
         item.GetComponent<Collider>().enabled = false;
-        
-            item.SetParent(transform);
-            item.GetComponent<Rigidbody>().isKinematic = true;
-            item.GetComponent<Collider>().enabled = false;
-        
+
+    }
+    void PickDown(Transform item)
+    {
+        UpItem = null;
+        item.SetParent(OldParent);
+        item.GetComponent<Rigidbody>().isKinematic = false;
+        item.GetComponent<Collider>().enabled = true;
     }
 }
