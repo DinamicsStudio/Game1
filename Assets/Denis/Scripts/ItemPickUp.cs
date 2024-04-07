@@ -10,6 +10,7 @@ public class ItemPickUp : MonoBehaviour
     public Transform UpItem;
     public Transform ItemPos;
     public bool usable;
+    public static bool isPicked = false;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Item"))
@@ -40,6 +41,7 @@ public class ItemPickUp : MonoBehaviour
     }
     void PickUp(Transform item)
     {
+        isPicked = true;
         OldParent = item.parent;
         item.position = ItemPos.position;
         item.SetParent(transform);
@@ -49,6 +51,7 @@ public class ItemPickUp : MonoBehaviour
     }
     void PickDown(Transform item)
     {
+        isPicked = false;
         UpItem = null;
         item.SetParent(OldParent);
         item.GetComponent<Rigidbody>().isKinematic = false;

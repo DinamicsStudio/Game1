@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Item
   - floor
-  - quest
+  - cuttingBoard
   layers:
   - Default
   - TransparentFX
