@@ -13,9 +13,10 @@ public class WeaponRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);   
+        Ray ray=Camera.main.ScreenPointToRay(new Vector3 (Input.mousePosition.x,transform.position.y, Input.mousePosition.z ));
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
         {
             Vector3 targetPosition = hit.point;
 
