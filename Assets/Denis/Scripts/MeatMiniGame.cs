@@ -13,27 +13,30 @@ public class MeatMiniGame : MonoBehaviour
     public bool IsDraging = false;
     public float distance;
     public GameObject[] polosi;
-    public Animator[] anim1;
+    public GameObject[] meats;
+    //public Animator[] anim1;
     public Animator anim2;
     public float[] limits;
 
     private int i = 0;
 
-    public void Draging(RectTransform obj)
+    public void Draging(Transform obj)
     {
-        
+        Debug.Log(1);
         if (Vector3.Distance(obj.position, Input.mousePosition) <= distance)
         {
+            Debug.Log(Input.mousePosition);
             obj.position = Input.mousePosition;
         }
     }
-    public void EndDrag(RectTransform obj)
+    public void EndDrag(Transform obj)
     {
         if (Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - polosi[i / 2].GetComponent<Transform>().position.x) / 30))>=1)
         {
             polosi[i / 2].SetActive(false);
+            meats[i / 2].SetActive(false);
             meatPieceCount += Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - polosi[i / 2].GetComponent<Transform>().position.x) / 30));
-            //anim1[i].SetTrigger("trig");
+            anim2.SetTrigger("trig");
             i += 2;
             if(i/2<polosi.Length)
             {
@@ -48,10 +51,6 @@ public class MeatMiniGame : MonoBehaviour
                 miniGameUI.SetActive(false);
             }
         }
-        else
-        {
-            //anim2.SetTrigger("trigger");
-        }
     }
 
     [SerializeField] public static int meatPieceCount = 1;
@@ -59,6 +58,10 @@ public class MeatMiniGame : MonoBehaviour
     {
         if(ItemPickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && usable)
         {
+            for(int i=0;i<meats.Length;i++)
+            {
+                meats[i].SetActive(true);
+            }
             polosi[0].SetActive(true);
             InGame = true;
             Player.canmove = false;
