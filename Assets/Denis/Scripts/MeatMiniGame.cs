@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MeatMiniGame : MonoBehaviour
 {
-    [SerializeField] public static int meatPieceCount = 1; // счетчик кусков мяса вообщем в игре
+    [SerializeField] public static int meatPieceCount = 0; // счетчик кусков мяса вообщем в игре
     public static int meatCountInThis = 1; //счетчик мяса в мини игре
     public GameObject miniGameUI;
     public TMP_Text meatPiecesText;
@@ -22,14 +22,8 @@ public class MeatMiniGame : MonoBehaviour
     //text
     public TMP_Text meatTextInGame; //число мяса во время игры
     public GameObject meatTextObject; //in game
-    ItemPickUp itemPickUp;
 
     private int i = 0;
-
-    private void Start()
-    {
-        itemPickUp = FindAnyObjectByType<ItemPickUp>();
-    }
     public void Draging(Transform obj)
     {
         Debug.Log(1);
@@ -62,8 +56,8 @@ public class MeatMiniGame : MonoBehaviour
                 Player.canmove = true;
                 miniGameUI.SetActive(false);
                 meatTextObject.SetActive(true);
-                Destroy(itemPickUp.UpItem.gameObject);
-                itemPickUp.usable = false; ItemPickUp.isPicked = false;
+                Destroy(ItemPickUp.UpItem.gameObject);
+                ItemPickUp.usable = false; ItemPickUp.isPicked = false;
                 
             }
         }

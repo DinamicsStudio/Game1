@@ -705,9 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OldParent: {fileID: 0}
-  UpItem: {fileID: 0}
   ItemPos: {fileID: 1811209224}
-  usable: 0
 --- !u!1 &509422904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &739133578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1708,7 +1706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &983751987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1768,7 +1766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &986911388
 RectTransform:
   m_ObjectHideFlags: 0

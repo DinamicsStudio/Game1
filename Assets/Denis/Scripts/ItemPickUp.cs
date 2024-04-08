@@ -4,11 +4,10 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public Transform OldParent;
-    public Transform UpItem;
+    [SerializeField] public static Transform UpItem;
     public Transform ItemPos;
-    public bool usable;
-    [SerializeField]
-    public static bool isPicked = false;
+    [SerializeField] public static bool usable;
+    [SerializeField] public static bool isPicked = false;
     
     private void OnTriggerEnter(Collider other)
     {
