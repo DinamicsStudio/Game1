@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +13,10 @@ public class Shooting : MonoBehaviour
     public float relodTime = 2.0f;
     private bool isReloading = false;
     private bool isReadyToShoot = true;
-    public int bullets = 10;
+    public int bullets = 10; //максимальное в магазине, для UI
+    public int maxBullets;
     private int bullet=1;
-    public TextMeshProUGUI bulletText;
+    public TMP_Text bulletsText;
     
     void Start()
     {
@@ -26,6 +27,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       bulletsText.text = bullets.ToString() + " / " + maxBullets.ToString();
        if(Input.GetButtonDown("Fire1")&& isReadyToShoot&&!isReloading)
         {
             Shoot();
