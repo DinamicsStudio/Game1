@@ -624,7 +624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &509422905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &739133578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1204,24 +1204,8 @@ MonoBehaviour:
   meatPiecesText: {fileID: 1836978298}
   usable: 0
   InGame: 0
-  IsDraging: 1
-  distance: 300
-  polosi:
-  - {fileID: 509422904}
-  - {fileID: 986911387}
-  - {fileID: 739133577}
-  - {fileID: 983751986}
-  anim1: []
-  anim2: {fileID: 0}
-  limits:
-  - 1233
-  - 1404
-  - 1632
-  - 1780
-  - 1987
-  - 2127
-  - 2315
-  - 2451
+  IsDraging: 0
+  distance: 0
 --- !u!1 &983751986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &983751987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1298,7 +1282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &986911388
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 287, y: 136}
+  m_AnchoredPosition: {x: -295, y: 12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1371762573
@@ -1688,10 +1672,10 @@ MonoBehaviour:
         - m_Target: {fileID: 918221364}
           m_TargetAssemblyTypeName: MeatMiniGame, Assembly-CSharp
           m_MethodName: EndDrag
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 1371762572}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1707,7 +1691,23 @@ MonoBehaviour:
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1371762572}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 918221364}
+          m_TargetAssemblyTypeName: MeatMiniGame, Assembly-CSharp
+          m_MethodName: startDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2424,7 +2424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1793838179
 MonoBehaviour:
   m_ObjectHideFlags: 0
