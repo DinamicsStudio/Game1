@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MeatMiniGame : MonoBehaviour
 {
+    [SerializeField] public static int meatPieceCount = 1; // счетчик кусков мяса вообщем в игре
+    public static int meatCountInThis = 1; //счетчик мяса в мини игре
     public GameObject miniGameUI;
     public TMP_Text meatPiecesText;
     public bool usable;
@@ -17,9 +19,17 @@ public class MeatMiniGame : MonoBehaviour
     //public Animator[] anim1;
     public Animator anim2;
     public float[] limits;
+    //text
+    public TMP_Text meatTextInGame; //число мяса во время игры
+    public GameObject meatTextObject; //in game
+    ItemPickUp itemPickUp;
 
     private int i = 0;
 
+    private void Start()
+    {
+        itemPickUp = FindAnyObjectByType<ItemPickUp>();
+    }
     public void Draging(Transform obj)
     {
         Debug.Log(1);
@@ -35,7 +45,7 @@ public class MeatMiniGame : MonoBehaviour
         {
             polosi[i / 2].SetActive(false);
             meats[i / 2].SetActive(false);
-            meatPieceCount += Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - polosi[i / 2].GetComponent<Transform>().position.x) / 30));
+            meatCountInThis += Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - polosi[i / 2].GetComponent<Transform>().position.x) / 30));
             anim2.SetTrigger("trig");
             i += 2;
             if(i/2<polosi.Length)
@@ -44,16 +54,21 @@ public class MeatMiniGame : MonoBehaviour
             }
             else
             {
-                meatPieceCount = 0;
+                meatPieceCount += meatCountInThis;
+                meatCountInThis = 0;
+                //meatPieceCount = 0;
                 i = 0;
                 InGame = false;
                 Player.canmove = true;
                 miniGameUI.SetActive(false);
+                meatTextObject.SetActive(true);
+                Destroy(itemPickUp.UpItem.gameObject);
+                itemPickUp.usable = false; ItemPickUp.isPicked = false;
+                
             }
         }
     }
 
-    [SerializeField] public static int meatPieceCount = 1;
     private void Update()
     {
         if(ItemPickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && usable)
@@ -66,14 +81,18 @@ public class MeatMiniGame : MonoBehaviour
             InGame = true;
             Player.canmove = false;
             miniGameUI.SetActive(true);
+            meatTextObject.SetActive(false);
         }
         if(Input.GetKeyDown(KeyCode.Escape) && InGame)
         {
             InGame = false;
             Player.canmove = true;
             miniGameUI.SetActive(false);
+            meatTextObject.SetActive(true);
         }
-        meatPiecesText.text = "Pieces of meat: " + meatPieceCount;
+        meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
+        meatTextInGame.text = meatPieceCount.ToString();
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -87,6 +106,7 @@ public class MeatMiniGame : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             usable = false;
+            meatTextObject.SetActive(true);
         }
     }
 }
