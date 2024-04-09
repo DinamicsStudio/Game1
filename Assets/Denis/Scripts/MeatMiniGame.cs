@@ -10,9 +10,8 @@ public class MeatMiniGame : MonoBehaviour
     public static int meatCountInThis = 1; //счетчик мяса в мини игре
     public GameObject miniGameUI;
     public TMP_Text meatPiecesText;
-    public bool usable;
+    private bool _usable;
     public bool InGame;
-    public bool IsDraging = false;
     public float distance;
     public GameObject[] polosi;
     public GameObject[] meats;
@@ -65,7 +64,7 @@ public class MeatMiniGame : MonoBehaviour
 
     private void Update()
     {
-        if(ItemPickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && usable)
+        if(ItemPickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && _usable)
         {
             for(int i=0;i<meats.Length;i++)
             {
@@ -92,14 +91,14 @@ public class MeatMiniGame : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            usable = true;
+            _usable = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            usable = false;
+            _usable = false;
             meatTextObject.SetActive(true);
         }
     }
