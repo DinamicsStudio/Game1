@@ -14,7 +14,7 @@ public class WeaponRotation : MonoBehaviour
     void Update()
     {
         Ray ray=Camera.main.ScreenPointToRay(new Vector3 (Input.mousePosition.x,transform.position.y, Input.mousePosition.z ));
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
 
         if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
         {
