@@ -1,25 +1,21 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class MeatMiniGame : MonoBehaviour
 {
-    [SerializeField] public static int meatPieceCount = 0; // счетчик кусков мяса вообщем в игре
-    public static int meatCountInThis = 1; //счетчик мяса в мини игре
-    public GameObject miniGameUI;
-    public TMP_Text meatPiecesText;
+    public event Action MeatUpdate;
+    public int meatCountInThis = 0; 
+    [SerializeField] private GameObject miniGameUI;
+    [SerializeField] private TMP_Text meatPiecesText;
     private bool _usable;
-    public bool InGame;
-    public float distance;
-    public GameObject[] polosi;
-    public GameObject[] meats;
-    //public Animator[] anim1;
-    public Animator anim2;
-    public float[] limits;
-    //text
-    public TMP_Text meatTextInGame; //число мяса во время игры
+    private bool InGame;
+    [SerializeField] private float distance;
+    [SerializeField] private GameObject[] polosi;
+    [SerializeField] private GameObject[] meats;
+
+    [SerializeField] private Animator anim2;
+    [SerializeField] private float[] limits;
     public GameObject meatTextObject; //in game
 
     private int i = 0;
@@ -47,10 +43,8 @@ public class MeatMiniGame : MonoBehaviour
             }
             else
             {
-                meatPieceCount += meatCountInThis;
-                meatCountInThis = 0;
-                //meatPieceCount = 0;
-                i = 0;
+                MeatUpdate.Invoke();
+                meatCountInThis = i = 0;
                 InGame = false;
                 Player.canmove = true;
                 miniGameUI.SetActive(false);
@@ -84,7 +78,6 @@ public class MeatMiniGame : MonoBehaviour
             meatTextObject.SetActive(true);
         }
         meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
-        meatTextInGame.text = meatPieceCount.ToString();
         
     }
     private void OnTriggerEnter(Collider other)
