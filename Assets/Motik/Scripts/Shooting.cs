@@ -32,19 +32,22 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
         }
-        if (Input.GetKeyDown(KeyCode.R) && isReloading)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            StartCoroutine(Reload());
-        }
-        if(Input.GetKeyUp(KeyCode.R) )
-        {
+            
             isReloading = true;
-        }
-        if (isReloading)
-        {
-            bullets = 10;
+            
+            StartCoroutine(Reload());
             isReadyToShoot=true;
+            
         }
+        
+        
+        if (bullets <= 0)
+        {
+            isReadyToShoot = false;
+        }
+        
         
     }
     void Shoot()
@@ -57,7 +60,7 @@ public class Shooting : MonoBehaviour
         GameObject bullet=Instantiate(bulletPrefab,firePoint.position,firePoint.rotation);
         Rigidbody rb=bullet .GetComponent<Rigidbody>();
         rb.AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
-        isReadyToShoot = false;
+        isReadyToShoot = true;
         
         StartCoroutine(ReadyToShoot(relodTime));
         
@@ -66,6 +69,7 @@ public class Shooting : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
+        
 
         yield return new WaitForSeconds(relodTime);
 
