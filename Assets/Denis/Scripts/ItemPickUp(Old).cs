@@ -8,15 +8,10 @@ public class ItemPickUp : MonoBehaviour
     public Transform ItemPos;
     [SerializeField] public static bool usable;
     [SerializeField] public static bool isPicked = false;
-    
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Item"))
-        {
-            UpItem = other.GetComponent<Transform>();
-            usable = true;
-        }
-        
+        UpItem = other.GetComponent<Transform>();
+        usable = true;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -34,7 +29,7 @@ public class ItemPickUp : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Q) && UpItem!=null)
         {
-            PickDown(UpItem);
+            DropDown(UpItem);
         }
     }
     void PickUp(Transform item)
@@ -47,7 +42,7 @@ public class ItemPickUp : MonoBehaviour
         item.GetComponent<Collider>().enabled = false;
 
     }
-    void PickDown(Transform item)
+    void DropDown(Transform item)
     {
         isPicked = false;
         UpItem = null;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5187125904266591518}
   - component: {fileID: 328053832451702908}
   - component: {fileID: 6005613134326484907}
+  - component: {fileID: -8860576817940416730}
   m_Layer: 0
   m_Name: Item(Meat)
   m_TagString: Item
@@ -155,3 +156,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.71308327
   m_Center: {x: 0, y: 0.05176735, z: 0}
+--- !u!114 &-8860576817940416730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271175884584730459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d45e3758110af44a92c73b47552084c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotButton: {fileID: 668239876726249084, guid: 522c7d6b7b93c0645b5ad20c66d01b30, type: 3}
+  usable: 0

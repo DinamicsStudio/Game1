@@ -49,16 +49,17 @@ public class MeatMiniGame : MonoBehaviour
                 Player.canmove = true;
                 miniGameUI.SetActive(false);
                 meatTextObject.SetActive(true);
-                Destroy(ItemPickUp.UpItem.gameObject);
-                ItemPickUp.usable = false; ItemPickUp.isPicked = false;
+                //Destroy(ItemPickUp.UpItem.gameObject);
+                //ItemPickUp.usable = false; ItemPickUp.isPicked = false;
+                PickUp.isPicked = false;
+                
                 
             }
         }
     }
-
     private void Update()
     {
-        if(ItemPickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && _usable)
+        if(PickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
             for(int i=0;i<meats.Length;i++)
             {
