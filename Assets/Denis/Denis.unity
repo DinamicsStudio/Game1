@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 588368735}
   - component: {fileID: 588368737}
   - component: {fileID: 588368736}
+  - component: {fileID: 588368738}
   m_Layer: 5
   m_Name: MeatPiecesText
   m_TagString: Untagged
@@ -1641,6 +1642,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588368734}
   m_CullTransparentMesh: 1
+--- !u!114 &588368738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588368734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56df79f047aa4eb6d1e1c4df04669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meatMiniGame: {fileID: 918221364}
+  _meatText: {fileID: 588368736}
 --- !u!1001 &588517317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2613,30 +2628,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meatCountInThis: 0
-  miniGameUI: {fileID: 1793838178}
-  meatPiecesText: {fileID: 1836978298}
-  distance: 300
-  polosi:
+  _miniGameUI: {fileID: 1793838178}
+  _meatPiecesText: {fileID: 1836978298}
+  _distance: 100
+  _polosi:
   - {fileID: 509422904}
   - {fileID: 986911387}
   - {fileID: 739133577}
-  - {fileID: 739133577}
-  meats:
+  - {fileID: 983751986}
+  _meats:
   - {fileID: 960560734}
   - {fileID: 1932664884}
   - {fileID: 1667042518}
-  - {fileID: 1667042518}
-  anim2: {fileID: 1371762577}
-  limits:
-  - 1233
-  - 1404
-  - 1632
-  - 1780
-  - 1987
-  - 2127
-  - 2315
-  - 2451
-  meatTextObject: {fileID: 588368734}
+  - {fileID: 880789732}
+  - {fileID: 1057357638}
+  _anim2: {fileID: 0}
+  _meatTextObject: {fileID: 588368734}
+  i: 0
 --- !u!1 &960560734
 GameObject:
   m_ObjectHideFlags: 0
