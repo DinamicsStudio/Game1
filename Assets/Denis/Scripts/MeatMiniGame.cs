@@ -51,12 +51,19 @@ public class MeatMiniGame : MonoBehaviour
                 _miniGameUI.SetActive(false);
                 _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = true;
                 _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
             }
         }
     }
     private void Update()
     {
-        if(_inventory.ItemID.Contains(0) && Input.GetKeyDown(KeyCode.E) && _usable) 
+        if(Array.IndexOf(_inventory.ItemID, 0)!=-1 && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
             for(int i=0;i<_meats.Length;i++)
             {

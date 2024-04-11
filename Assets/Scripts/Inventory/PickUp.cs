@@ -29,6 +29,7 @@ public class PickUp : MonoBehaviour
                     _inventory.ItemID[i] = _iD;
                     _inventory.SlotStack[i] = _maxInStack;
                     _inventory.ObjCountInSlot[i]++;
+                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
                     Destroy(gameObject);
                     break;
                 }

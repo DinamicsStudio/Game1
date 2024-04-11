@@ -169,6 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImageInInventory: {fileID: 668239876726249084, guid: 522c7d6b7b93c0645b5ad20c66d01b30, type: 3}
-  _iD: -1
+  _iD: 0
   _maxInStack: 1
   _inventory: {fileID: 0}

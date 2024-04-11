@@ -11,15 +11,20 @@ public class Slot : MonoBehaviour
     {
         if (_inventory.ObjCountInSlot[_slotNumber]==0)
         {
-
+            _inventory.ItemID[_slotNumber] = -1;
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
     public void DropItem()
     {
         foreach (Transform child in transform)
         {
+            _inventory.ObjCountInSlot[_slotNumber]--;
             child.GetComponent<Drop>().SpawnDroppedItem();
-            GameObject.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
     }
 }
