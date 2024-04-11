@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour
             _inventory.ItemID[_slotNumber] = -1;
             foreach (Transform child in transform)
             {
-                GameObject.Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
         }
     }
@@ -24,7 +24,8 @@ public class Slot : MonoBehaviour
         {
             _inventory.ObjCountInSlot[_slotNumber]--;
             child.GetComponent<Drop>().SpawnDroppedItem();
-            Destroy(child.gameObject);
+            if (_inventory.ObjCountInSlot[_slotNumber] == 0)
+                Destroy(child.gameObject);
         }
     }
 }

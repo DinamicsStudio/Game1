@@ -12,6 +12,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private int _maxInStack;
 
     [SerializeField] private Inventory _inventory;
+    private bool _usable;
 
     private void Start()
     {
@@ -20,7 +21,19 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>() != null && Input.GetKeyDown(KeyCode.E))
+        if (other.GetComponent<Player>() != null )
+        {
+            _usable = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        _usable = false;
+    }
+
+    private void Update()
+    {
+        if(_usable && Input.GetKeyDown(KeyCode.E))
         {
             for (int i = 0; i < _inventory._slots.Length; i++)
             {
@@ -29,7 +42,7 @@ public class PickUp : MonoBehaviour
                     _inventory.ItemID[i] = _iD;
                     _inventory.SlotStack[i] = _maxInStack;
                     _inventory.ObjCountInSlot[i]++;
-                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
+                    //Instantiate(ImageInInventory, _inventory._slots[i].transform);
                     Destroy(gameObject);
                     break;
                 }
@@ -46,7 +59,6 @@ public class PickUp : MonoBehaviour
 
 
             }
-
         }
     }
 }

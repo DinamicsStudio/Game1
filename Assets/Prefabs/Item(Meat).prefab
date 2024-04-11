@@ -154,7 +154,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.71308327
+  m_Radius: 0.65
   m_Center: {x: 0, y: 0.05176735, z: 0}
 --- !u!114 &-8860576817940416730
 MonoBehaviour:
@@ -170,5 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImageInInventory: {fileID: 668239876726249084, guid: 522c7d6b7b93c0645b5ad20c66d01b30, type: 3}
   _iD: 0
-  _maxInStack: 1
+  _maxInStack: 2
   _inventory: {fileID: 0}
