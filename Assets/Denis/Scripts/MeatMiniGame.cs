@@ -74,6 +74,7 @@ public class MeatMiniGame : MonoBehaviour
             Player.canmove = false;
             _miniGameUI.SetActive(true);
             _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = false;
+            
         }
         if(Input.GetKeyDown(KeyCode.Escape) && InGame)
         {

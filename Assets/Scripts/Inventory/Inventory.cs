@@ -10,19 +10,20 @@ public class Inventory : MonoBehaviour
     public int[] SlotStack;
     public int[] ObjCountInSlot;
     public GameObject[] _slots;
-    [SerializeField] private GameObject _inventoryObject; //для вкл/выкл инвентаря
-    private bool _isOn;
+    //[SerializeField] private GameObject _inventoryObject; //для вкл/выкл инвентаря
+    //private bool _isOn;
     private void Start()
     {
-        _isOn = false;
+        //_isOn = false;
     }
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Tab))
         {
-            OnInventoryClick();
+            //OnInventoryClick();
         }
     }
+    /*
     public void OnInventoryClick()
     {
         if (_isOn == false)
@@ -36,5 +37,6 @@ public class Inventory : MonoBehaviour
             _inventoryObject.SetActive(false);
         }
     }
+    */
 
 }

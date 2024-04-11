@@ -20,11 +20,11 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>()!=null)
+        if (other.GetComponent<Player>() != null && Input.GetKeyDown(KeyCode.E))
         {
             for (int i = 0; i < _inventory._slots.Length; i++)
             {
-                if ((_inventory.ItemID[i]==_iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
+                if ((_inventory.ItemID[i] == _iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
                 {
                     _inventory.ItemID[i] = _iD;
                     _inventory.SlotStack[i] = _maxInStack;
@@ -33,18 +33,20 @@ public class PickUp : MonoBehaviour
                     Destroy(gameObject);
                     break;
                 }
-                if(_inventory.ItemID[i] == -1)
+                if (_inventory.ItemID[i] == -1)
                 {
+                    _inventory.ItemID[i] = _iD;
+                    _inventory.SlotStack[i] = _maxInStack;
+                    _inventory.ObjCountInSlot[i]++;
+                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
+                    Destroy(gameObject);
+                    break;
+                }
 
-                    _inventory.ItemID[i] = _iD;
-                    _inventory.SlotStack[i] = _maxInStack;
-                    _inventory.ObjCountInSlot[i]++;
-                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
-                    Destroy(gameObject);
-                    break;
-                }
+
+
             }
-        }
 
+        }
     }
 }
