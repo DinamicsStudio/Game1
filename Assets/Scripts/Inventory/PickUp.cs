@@ -7,25 +7,38 @@ using static UnityEditor.Progress;
 
 public class PickUp : MonoBehaviour
 {
-    private Inventory inventory;
-    public GameObject slotButton;
-    [SerializeField] public static bool isPicked;
+    public GameObject ImageInInventory;
+    [SerializeField] private int _iD;
+    [SerializeField] private int _maxInStack;
+
+    [SerializeField] private Inventory _inventory;
 
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<Player>()!=null)
         {
-            for (int i = 0; i < inventory.slots.Length; i++)
+            for (int i = 0; i < _inventory._slots.Length; i++)
             {
-                if (inventory.isFull[i] == false)
+                if ((_inventory.ItemID[i]==_iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
                 {
-                    inventory.isFull[i] = true;
-                    isPicked = true;
-                    Instantiate(slotButton, inventory.slots[i].transform);
+                    _inventory.ItemID[i] = _iD;
+                    _inventory.SlotStack[i] = _maxInStack;
+                    _inventory.ObjCountInSlot[i]++;
+                    Destroy(gameObject);
+                    break;
+                }
+                if(_inventory.ItemID[i] == -1)
+                {
+
+                    _inventory.ItemID[i] = _iD;
+                    _inventory.SlotStack[i] = _maxInStack;
+                    _inventory.ObjCountInSlot[i]++;
+                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
                     Destroy(gameObject);
                     break;
                 }

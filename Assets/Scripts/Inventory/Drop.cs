@@ -5,11 +5,7 @@ using UnityEngine;
 public class Drop : MonoBehaviour
 {
     public GameObject item;
-    private Transform player;
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    [SerializeField] private Transform player;
     public void SpawnDroppedItem()
     {
         Vector3 spawnDirection = player.forward * 2f; // Множитель 2 - это расстояние спавна

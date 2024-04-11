@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool[] isFull;
-    public GameObject[] slots;
-    public GameObject inventoryObject; //для вкл/выкл инвентаря
-    private bool isOn;
+    public bool[] IsFull;
+    public int[] ItemID;
+    public int[] SlotStack;
+    public int[] ObjCountInSlot;
+    public GameObject[] _slots;
+    [SerializeField] private GameObject _inventoryObject; //для вкл/выкл инвентаря
+    private bool _isOn;
     private void Start()
     {
-        isOn = false;
+        _isOn = false;
     }
     private void Update()
     {
@@ -22,15 +25,15 @@ public class Inventory : MonoBehaviour
     }
     public void OnInventoryClick()
     {
-        if (isOn == false)
+        if (_isOn == false)
         {
-            isOn = true;
-            inventoryObject.SetActive(true);
+            _isOn = true;
+            _inventoryObject.SetActive(true);
         }
-        else if (isOn == true) 
+        else if (_isOn == true) 
         {
-            isOn = false;
-            inventoryObject.SetActive(false);
+            _isOn = false;
+            _inventoryObject.SetActive(false);
         }
     }
 

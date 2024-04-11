@@ -168,5 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d45e3758110af44a92c73b47552084c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotButton: {fileID: 668239876726249084, guid: 522c7d6b7b93c0645b5ad20c66d01b30, type: 3}
-  usable: 0
+  ImageInInventory: {fileID: 668239876726249084, guid: 522c7d6b7b93c0645b5ad20c66d01b30, type: 3}
+  _iD: -1
+  _maxInStack: 1
+  _inventory: {fileID: 0}

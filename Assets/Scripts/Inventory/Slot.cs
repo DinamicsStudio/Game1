@@ -5,29 +5,19 @@ using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
-    private Inventory inventory;
-    public int slotNumber; 
-
-    private void Start()
-    {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-    }
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private int _slotNumber;
     private void Update()
     {
-        if(transform.childCount <= 0) //проверка пустой ли слот
+        if (_inventory.ObjCountInSlot[_slotNumber]==0)
         {
-            inventory.isFull[slotNumber] = false;
+
         }
     }
     public void DropItem()
     {
         foreach (Transform child in transform)
         {
-            if(child.gameObject.name.Contains("Meat"))
-            {
-                PickUp.isPicked = true;
-            }
-            PickUp.isPicked = false;
             child.GetComponent<Drop>().SpawnDroppedItem();
             GameObject.Destroy(child.gameObject);
         }

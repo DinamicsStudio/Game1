@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class MeatMiniGame : MonoBehaviour
 {
     public event Action MeatUpdate;
-    public int meatCountInThis = 0; 
+    public int meatCountInThis = 0;
+    [SerializeField] private Inventory _inventory;
     [SerializeField] private GameObject _miniGameUI;
     [SerializeField] private TMP_Text _meatPiecesText;
     private bool _usable;
@@ -48,17 +50,13 @@ public class MeatMiniGame : MonoBehaviour
                 meatCountInThis = i = 0;
                 _miniGameUI.SetActive(false);
                 _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = true;
-                //Destroy(ItemPickUp.UpItem.gameObject);
-                //ItemPickUp.usable = false; ItemPickUp.isPicked = false;
-                PickUp.isPicked = false;
-                
-                
+                _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
             }
         }
     }
     private void Update()
     {
-        if(PickUp.isPicked == true && Input.GetKeyDown(KeyCode.E) && _usable) 
+        if(_inventory.ItemID.Contains(0) && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
             for(int i=0;i<_meats.Length;i++)
             {
