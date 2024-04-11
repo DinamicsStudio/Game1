@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponRotation : MonoBehaviour
@@ -13,7 +14,7 @@ public class WeaponRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray=Camera.main.ScreenPointToRay(new Vector3 (Input.mousePosition.x,transform.position.y, Input.mousePosition.z ));
+        Ray ray=Camera.main.ScreenPointToRay(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));
         
 
         if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
@@ -22,7 +23,8 @@ public class WeaponRotation : MonoBehaviour
 
             Vector3 direction=targetPosition - transform.position;
 
-            transform.LookAt(targetPosition);
+            transform.LookAt(new Vector3 (targetPosition.x,0,targetPosition.z));
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
     }
 }
