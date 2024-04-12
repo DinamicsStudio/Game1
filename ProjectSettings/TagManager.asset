@@ -7,6 +7,7 @@ TagManager:
   - Item
   - floor
   - cuttingBoard
+  - Client
   layers:
   - Default
   - TransparentFX
