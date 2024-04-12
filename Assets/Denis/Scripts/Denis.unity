@@ -562,9 +562,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   cam: {fileID: 525828987}
-  dashDistance: 2
+  dashSpeed: 0
   mousePos: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  dashCoolDown: 0
 --- !u!54 &408612905
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -605,9 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OldParent: {fileID: 0}
-  UpItem: {fileID: 0}
   ItemPos: {fileID: 1811209224}
-  usable: 0
 --- !u!1 &509422904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,18 +1199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f627b25c248909c48931288236b7deab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniGameUI: {fileID: 1793838178}
-  meatPiecesText: {fileID: 1836978298}
-  usable: 0
-  InGame: 0
-  IsDraging: 0
-  distance: 0
-  polosi: []
-  meats: []
-  anim2: {fileID: 0}
-  limits: []
-  meatTextInGame: {fileID: 0}
-  meatTextObject: {fileID: 0}
+  meatCountInThis: 0
+  _inventory: {fileID: 0}
+  _miniGameUI: {fileID: 0}
+  _meatPiecesText: {fileID: 0}
+  _distance: 0
+  _polosi: []
+  _meats: []
+  _anim2: {fileID: 0}
+  _meatTextObject: {fileID: 0}
+  i: 0
 --- !u!1 &983751986
 GameObject:
   m_ObjectHideFlags: 0
