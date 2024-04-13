@@ -18,13 +18,6 @@ public class Pistolet : MonoBehaviour
     private int bullet=1;
     public TMP_Text bulletsText;
     
-    
-    void Start()
-    {
-       
-      
-    }
-
     // Update is called once per frame
     void Update()
     {
