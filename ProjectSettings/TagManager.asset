@@ -8,6 +8,8 @@ TagManager:
   - floor
   - cuttingBoard
   - Client
+  - OrderPos
+  - EatTables
   layers:
   - Default
   - TransparentFX

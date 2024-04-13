@@ -1,31 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClientSpawner : MonoBehaviour
 {
-    public GameObject clientPrefab;
-    private float spawnCooldown = 3;
-    public Transform spawnPos;
-    [SerializeField] public GameObject[] tablesToSitForClient;
-    [SerializeField] public GameObject orderPosToClient;
-    private PlaceToSit orderPos;
-    private void Start()
-    {
-        orderPos = orderPosToClient.GetComponent<PlaceToSit>();
-    }
-
+    [SerializeField] private GameObject _clientPrefab;
+    [SerializeField] private float _spawnCooldown = 3f;
+    [SerializeField] private Transform _spawnPos;
+    [SerializeField] private GameObject _orderPosition;
+    [SerializeField] private SitTables _sitTables;
+    
     private void Update()
     {
-        if (orderPos.isFree)
+        _spawnCooldown -= Time.deltaTime;
+        if (_spawnCooldown <= 0)
         {
-            spawnCooldown -= Time.deltaTime;
-            if (spawnCooldown <= 0)
+            for(int i=0;i<_sitTables.IsReserved.Length;i++)
             {
-                spawnCooldown = 20;
-                Instantiate(clientPrefab, spawnPos.position, Quaternion.identity);
+                if (_sitTables.IsReserved[i] == false)
+                {
+                    _sitTables.IsReserved[i] = true;
+                    _spawnCooldown = 20;
+                    GameObject sp = Instantiate(_clientPrefab, _spawnPos.position, Quaternion.identity);
+                    sp.GetComponent<Client>().GetNumberOfTable(i);
+                    break;
+                }
             }
         }    
     }
