@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClientSpawner : MonoBehaviour
@@ -8,13 +10,23 @@ public class ClientSpawner : MonoBehaviour
     private float spawnCooldown = 3;
     public Transform spawnPos;
     [SerializeField] public GameObject[] tablesToSitForClient;
+    [SerializeField] public GameObject orderPosToClient;
+    private PlaceToSit orderPos;
+    private void Start()
+    {
+        orderPos = orderPosToClient.GetComponent<PlaceToSit>();
+    }
+
     private void Update()
     {
-        spawnCooldown -= Time.deltaTime;
-        if(spawnCooldown <= 0)
+        if (orderPos.isFree)
         {
-            spawnCooldown = 10;
-            Instantiate(clientPrefab, spawnPos.position, Quaternion.identity);
-        }
+            spawnCooldown -= Time.deltaTime;
+            if (spawnCooldown <= 0)
+            {
+                spawnCooldown = 20;
+                Instantiate(clientPrefab, spawnPos.position, Quaternion.identity);
+            }
+        }    
     }
 }

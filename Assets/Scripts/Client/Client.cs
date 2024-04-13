@@ -8,10 +8,14 @@ public class Client : MonoBehaviour
     //public GameObject[] productImages; // для облочка
     public GameObject orderBanner;
     public float leaveTime; //через сколько уйдет
-    public GameObject[] sitTables; 
+    private GameObject[] sitTables; //ничего не надо указывать сдесь в инспекторe
     public float speed;
-    public float stoppingDistance;
+    public float stoppingDistanceForTable;
+    public float stoppingDistanceForOrderPlace;
     private bool reachedTarget = false;
+    private static bool isOrdered = false;
+    private GameObject orderPos;
+    private bool isColided;
 
     Collider colider;
     Rigidbody rb;
@@ -20,41 +24,78 @@ public class Client : MonoBehaviour
     {
         ClientSpawner clientSpawner = FindAnyObjectByType<ClientSpawner>(); //find any так как вроде не будет больше такого obj
         sitTables = clientSpawner.tablesToSitForClient;
+        orderPos = clientSpawner.orderPosToClient;
         colider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
 
     }
     void Update()
     {
-        leaveTime -= Time.deltaTime;
-        foreach(GameObject obj in sitTables)
+        if (isOrdered)
         {
-            if (obj.GetComponent<PlaceToSit>().isFree)
+            foreach (GameObject obj in sitTables)
+            {
+                if (obj.GetComponent<PlaceToSit>().isFree)
+                {
+                    if (!reachedTarget)
+                    {
+                        Vector3 direction = obj.transform.position - transform.position;
+                        if (direction.magnitude <= stoppingDistanceForTable)
+                        {
+                            reachedTarget = true;
+                            Debug.Log($"{obj}Is free");
+                            obj.GetComponent<PlaceToSit>().isFree = false;
+                            colider.isTrigger = true;
+                            rb.isKinematic = true;
+                            isOrdered = false;
+                            obj.GetComponent<Collider>().isTrigger = true;
+                            if (leaveTime <= 0)
+                            {
+                                Debug.Log("Client leave");
+                                obj.GetComponent<PlaceToSit>().isFree = true;
+                                Destroy(gameObject);
+                                obj.GetComponent<Collider>().isTrigger = false;
+                            }
+                            leaveTime -= Time.deltaTime;
+                        }
+                        else
+                        {
+                            transform.Translate(direction.normalized * speed * Time.deltaTime);
+                        }
+                    }
+                }
+            }
+        }
+        if (!isOrdered)
+        {
+            if (orderPos.GetComponent<PlaceToSit>().isFree)
             {
                 if (!reachedTarget)
                 {
-                    Vector3 direction = obj.transform.position - transform.position;
-                    if (direction.magnitude <= stoppingDistance)
+                    Vector3 direction = orderPos.transform.position - transform.position;
+                    if (direction.magnitude <= stoppingDistanceForOrderPlace)
                     {
                         reachedTarget = true;
-                        Debug.Log($"{obj}Is free");
-                        obj.GetComponent<PlaceToSit>().isFree = false;
+                        orderPos.GetComponent<PlaceToSit>().isFree = false;
                         colider.isTrigger = true;
                         rb.isKinematic = true;
-                        obj.GetComponent<Collider>().isTrigger = true;
-                        if(leaveTime <= 0)
-                        {
-                            Debug.Log("Client leave");
-                            obj.GetComponent<PlaceToSit>().isFree = true;
-                            Destroy(gameObject);
-                            obj.GetComponent<Collider>().isTrigger = false;
-                        }
+                        isOrdered = false;
                     }
                     else
                     {
                         transform.Translate(direction.normalized * speed * Time.deltaTime);
                     }
                 }
+                
+            }
+            if (isColided && Input.GetKeyDown(KeyCode.E))
+            {
+                isColided = false;
+                rb.isKinematic = false;
+                colider.isTrigger = false;
+                orderPos.GetComponent<PlaceToSit>().isFree = true;
+                isOrdered = true;
+                reachedTarget = false;
             }
         }
     }
@@ -62,16 +103,17 @@ public class Client : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            orderBanner.SetActive(true);
+            isColided = true;
+            if(isOrdered) orderBanner.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            orderBanner.SetActive(false);
+            isColided = false;
+            if(isOrdered) orderBanner.SetActive(false);
         }
     }
-
 
 }
