@@ -14,7 +14,7 @@ public class Pistolet : MonoBehaviour
     private bool isReloading = false;
     private bool isReadyToShoot = true;
     public int bullets = 10; //максимальное в магазине, для UI
-    public int maxBullets;
+    public int maxBullets=10;
     private int bullet=1;
     public TMP_Text bulletsText;
     
@@ -35,8 +35,8 @@ public class Pistolet : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-
-            StartCoroutine(Reload());
+            bullets = maxBullets;
+            
             isReadyToShoot=true;
             
         }
@@ -61,7 +61,6 @@ public class Pistolet : MonoBehaviour
         rb.AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
         isReadyToShoot = true;
         
-        StartCoroutine(ReadyToShoot(relodTime));
         
         
     }
@@ -76,10 +75,6 @@ public class Pistolet : MonoBehaviour
         isReloading=false;
     }
 
-    IEnumerator ReadyToShoot(float delay)
-    {
-yield return new WaitForSeconds(delay);
-        isReadyToShoot=true;
-    }
+    
 
 }

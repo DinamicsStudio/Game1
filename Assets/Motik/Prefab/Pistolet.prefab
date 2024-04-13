@@ -115,7 +115,7 @@ MonoBehaviour:
   bulletSpeed: 10
   relodTime: 2
   bullets: 10
-  maxBullets: 0
+  maxBullets: 10
   bulletsText: {fileID: 0}
 --- !u!114 &-1879813729811319170
 MonoBehaviour:
