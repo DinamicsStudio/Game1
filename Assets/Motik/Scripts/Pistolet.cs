@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class Shooting : MonoBehaviour
+public class Pistolet : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firePoint;
@@ -17,6 +17,7 @@ public class Shooting : MonoBehaviour
     public int maxBullets;
     private int bullet=1;
     public TMP_Text bulletsText;
+    
     
     void Start()
     {
@@ -34,9 +35,7 @@ public class Shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            
-            isReloading = true;
-            
+
             StartCoroutine(Reload());
             isReadyToShoot=true;
             
@@ -73,7 +72,7 @@ public class Shooting : MonoBehaviour
 
         yield return new WaitForSeconds(relodTime);
 
-        isReadyToShoot=true;
+       
         isReloading=false;
     }
 
