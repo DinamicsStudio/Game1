@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class Shooting : MonoBehaviour
+public class Pistolet : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firePoint;
@@ -14,16 +14,10 @@ public class Shooting : MonoBehaviour
     private bool isReloading = false;
     private bool isReadyToShoot = true;
     public int bullets = 10; //максимальное в магазине, для UI
-    public int maxBullets;
+    public int maxBullets=10;
     private int bullet=1;
     public TMP_Text bulletsText;
     
-    void Start()
-    {
-       
-      
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,10 +28,8 @@ public class Shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            bullets = maxBullets;
             
-            isReloading = true;
-            
-            StartCoroutine(Reload());
             isReadyToShoot=true;
             
         }
@@ -62,7 +54,6 @@ public class Shooting : MonoBehaviour
         rb.AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
         isReadyToShoot = true;
         
-        StartCoroutine(ReadyToShoot(relodTime));
         
         
     }
@@ -73,14 +64,10 @@ public class Shooting : MonoBehaviour
 
         yield return new WaitForSeconds(relodTime);
 
-        isReadyToShoot=true;
+       
         isReloading=false;
     }
 
-    IEnumerator ReadyToShoot(float delay)
-    {
-yield return new WaitForSeconds(delay);
-        isReadyToShoot=true;
-    }
+    
 
 }
