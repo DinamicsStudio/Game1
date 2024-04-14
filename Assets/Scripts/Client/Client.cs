@@ -14,16 +14,14 @@ public class Client : MonoBehaviour
     private float _isOrdering = 1;
     public int _tableNumber, _firstway = 1, _secondway = 0;
     private bool _isEat = false;
+    DialogueSimple dialogueSystem;
 
-    Collider colider;
-    Rigidbody rb;
 
     private void Start()
     {
         _sitTables = GameObject.FindGameObjectWithTag("EatTables").GetComponent<SitTables>();
         _orderPos = GameObject.FindGameObjectWithTag("OrderPos").GetComponent<Transform>();
-        colider = GetComponent<Collider>();
-        rb = GetComponent<Rigidbody>();
+        dialogueSystem = FindAnyObjectByType<DialogueSimple>();
 
     }
 
@@ -32,21 +30,19 @@ public class Client : MonoBehaviour
 
         if (isOrdered == false && _isEat == false)
         {
-
             transform.position = Vector3.MoveTowards(transform.position, _orderPos.position, speed * Time.deltaTime * _isOrdering);
             if (Vector3.Distance(transform.position, _orderPos.position) <= 0.2f) _isOrdering = 0;
             if (Input.GetKeyDown(KeyCode.E) && _usable && _isOrdering == 0)
             {
-
+                dialogueSystem.StartDialogue();
+            }
+            if (dialogueSystem.isEnded == true)
+            {
                 isOrdered = true;
                 orderBanner.SetActive(true);
-
+                dialogueSystem.isEnded = false;
             }
-
         }
-        //Debug.Log(isOrdered); 
-        //Debug.Log(_isEat);
-        
         if (isOrdered && _isEat == false)
         {
             //Debug.Log(Vector3.Distance(transform.position, _sitTables.WayToTable[_tableNumber * 2+1].position));
@@ -55,9 +51,12 @@ public class Client : MonoBehaviour
             if (Vector3.Distance(transform.position, _sitTables.WayToTable[_tableNumber * 2].position) <= 0.6f) { _secondway = 1; _firstway = 0; }
             transform.position = Vector3.MoveTowards(transform.position, _sitTables.WayToTable[_tableNumber * 2 + 1].position, speed * Time.deltaTime * _secondway);
             if (Vector3.Distance(transform.position, _sitTables.WayToTable[(_tableNumber * 2) + 1].position) <= 0.6f) { _secondway = 0; _firstway = 0; }
-            if (_secondway + _firstway == 0){ _isEat = true; orderBanner.SetActive(false); }
+            if (_secondway + _firstway == 0) { _isEat = true; } //orderBanner.SetActive(false);
 
         }
+        //Debug.Log(isOrdered); 
+        //Debug.Log(_isEat);
+        
 
     }
 

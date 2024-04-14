@@ -29,8 +29,11 @@ public class Player : MonoBehaviour
         if(canmove)rb.velocity = moveInput * speed;
         if (moveInput != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveInput); // ��������� ������� ������� � ������� ��������
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // ������ ������������ �������� � ������� �������� ��������
+            if(canmove)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveInput); // ��������� ������� ������� � ������� ��������
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // ������ ������������ �������� � ������� �������� ��������
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
