@@ -131,6 +131,7 @@ MonoBehaviour:
   _tableNumber: 0
   _firstway: 1
   _secondway: 0
+  pressEObject: {fileID: 7423457210049900751}
 --- !u!54 &1594990731742938152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5743338059411853120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -290,7 +291,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2751463423
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

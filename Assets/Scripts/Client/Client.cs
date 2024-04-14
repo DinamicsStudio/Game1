@@ -15,6 +15,7 @@ public class Client : MonoBehaviour
     public int _tableNumber, _firstway = 1, _secondway = 0;
     private bool _isEat = false;
     DialogueSimple dialogueSystem;
+    public GameObject pressEObject;
 
 
     private void Start()
@@ -27,7 +28,6 @@ public class Client : MonoBehaviour
 
     void Update()
     {
-
         if (isOrdered == false && _isEat == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, _orderPos.position, speed * Time.deltaTime * _isOrdering);
@@ -65,6 +65,7 @@ public class Client : MonoBehaviour
         if (collision.GetComponent<Player>()!=null)
         {
             _usable = true;
+            pressEObject.SetActive(true);
         }
     }
 
@@ -73,6 +74,7 @@ public class Client : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             _usable = false;
+            pressEObject.SetActive(false);
         }
     }
 
