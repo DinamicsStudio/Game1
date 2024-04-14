@@ -35,29 +35,31 @@ public class PickUp : MonoBehaviour
     {
         if(_usable && Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < _inventory._slots.Length; i++)
+            PickUping(_maxInStack,_iD,_inventory,ImageInInventory,true);
+        }
+    }
+    
+    public void PickUping(int maxInStack,int iD,Inventory inventory,GameObject imageInInventory, bool del)
+    {
+        for (int i = 0; i < _inventory._slots.Length; i++)
+        {
+            if ((_inventory.ItemID[i] == _iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
             {
-                if ((_inventory.ItemID[i] == _iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
-                {
-                    _inventory.ItemID[i] = _iD;
-                    _inventory.SlotStack[i] = _maxInStack;
-                    _inventory.ObjCountInSlot[i]++;
-                    //Instantiate(ImageInInventory, _inventory._slots[i].transform);
-                    Destroy(gameObject);
-                    break;
-                }
-                if (_inventory.ItemID[i] == -1)
-                {
-                    _inventory.ItemID[i] = _iD;
-                    _inventory.SlotStack[i] = _maxInStack;
-                    _inventory.ObjCountInSlot[i]++;
-                    Instantiate(ImageInInventory, _inventory._slots[i].transform);
-                    Destroy(gameObject);
-                    break;
-                }
-
-
-
+                _inventory.ItemID[i] = iD;
+                _inventory.SlotStack[i] = maxInStack;
+                _inventory.ObjCountInSlot[i]++;
+                //Instantiate(ImageInInventory, _inventory._slots[i].transform);
+                if(del)Destroy(gameObject);
+                break;
+            }
+            if (_inventory.ItemID[i] == -1)
+            {
+                _inventory.ItemID[i] = iD;
+                _inventory.SlotStack[i] = maxInStack;
+                _inventory.ObjCountInSlot[i]++;
+                Instantiate(imageInInventory, inventory._slots[i].transform);
+                if(del)Destroy(gameObject);
+                break;
             }
         }
     }

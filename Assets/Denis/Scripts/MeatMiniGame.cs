@@ -9,23 +9,34 @@ public class MeatMiniGame : MonoBehaviour
     public int meatCountInThis = 0;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameObject _miniGameUI;
+
+    [Space]
+    [Space]
+    [Space]
+
+    [SerializeField] private PickUp _pickUp;
     [SerializeField] private TMP_Text _meatPiecesText;
-    private bool _usable;
-    private bool InGame;
     [SerializeField] private float _distance;
     [SerializeField] private GameObject[] _polosi;
-    [SerializeField] private GameObject[] _meats;
 
+    [Space]
+    [Space]
+    [Space]
+
+    [SerializeField] private GameObject _meatImage;
+    [SerializeField] private GameObject[] _meats;
     [SerializeField] private Animator _anim2;
     [SerializeField] private GameObject _meatTextObject; //in game
 
-    public int i = 0;
+    private bool _usable;
+    private bool InGame;
+    [SerializeField]private int i;
     public void Draging(Transform obj)
     {
-        Debug.Log(1);
+        //Debug.Log(1);
         if (Vector3.Distance(obj.position, Input.mousePosition) <= _distance)
         {
-            Debug.Log(Input.mousePosition);
+            //Debug.Log(Input.mousePosition);
             obj.position = Input.mousePosition;
         }
     }
@@ -38,26 +49,33 @@ public class MeatMiniGame : MonoBehaviour
             meatCountInThis += Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - _polosi[i].GetComponent<Transform>().position.x) / 30));
             //_anim2.SetTrigger("trig");
             i++;
-            if(i<_polosi.Length)
+            
+            if(i< _polosi.Length)
             {
                 _polosi[i].SetActive(true);
             }
             else
             {
+           
                 MeatUpdate.Invoke();
                 InGame = false;
                 Player.canmove = true;
+                for(int j=0;j<meatCountInThis;j++)
+                {
+                    Debug.Log(_polosi.Length);
+                    _pickUp.PickUping(12, 1, _inventory, _meatImage,false);
+                }
                 meatCountInThis = i = 0;
                 _miniGameUI.SetActive(false);
                 _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = true;
                 _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
+                /*Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
-                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
-                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
+                Debug.Log(Array.IndexOf(_inventory.ItemID, 0));*/
             }
         }
     }
