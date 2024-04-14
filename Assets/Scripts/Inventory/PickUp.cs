@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PickUp : MonoBehaviour
 {
@@ -43,20 +38,22 @@ public class PickUp : MonoBehaviour
     {
         for (int i = 0; i < _inventory._slots.Length; i++)
         {
-            if ((_inventory.ItemID[i] == _iD && _inventory.SlotStack[i] > _inventory.ObjCountInSlot[i]))
+            if ((inventory.ItemID[i] == iD && inventory.SlotStack[i] > inventory.ObjCountInSlot[i]))
             {
-                _inventory.ItemID[i] = iD;
-                _inventory.SlotStack[i] = maxInStack;
-                _inventory.ObjCountInSlot[i]++;
+                inventory.ItemID[i] = iD;
+                inventory.SlotStack[i] = maxInStack;
+                inventory.ObjCountInSlot[i]++;
                 //Instantiate(ImageInInventory, _inventory._slots[i].transform);
                 if(del)Destroy(gameObject);
+                Debug.Log(11);
                 break;
+
             }
-            if (_inventory.ItemID[i] == -1)
+            else if (inventory.ItemID[i] == -1)
             {
-                _inventory.ItemID[i] = iD;
-                _inventory.SlotStack[i] = maxInStack;
-                _inventory.ObjCountInSlot[i]++;
+                inventory.ItemID[i] = iD;
+                inventory.SlotStack[i] = maxInStack;
+                inventory.ObjCountInSlot[i]++;
                 Instantiate(imageInInventory, inventory._slots[i].transform);
                 if(del)Destroy(gameObject);
                 break;

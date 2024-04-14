@@ -44,13 +44,14 @@ public class MeatMiniGame : MonoBehaviour
     {
         if (3 - Mathf.Round(Mathf.Abs(obj.position.x - _polosi[i].GetComponent<Transform>().position.x) / 30)>=1)
         {
+            
             _polosi[i].SetActive(false);
             _meats[i].SetActive(false);
             meatCountInThis += Convert.ToInt32(3 - Mathf.Round(Mathf.Abs(obj.position.x - _polosi[i].GetComponent<Transform>().position.x) / 30));
             //_anim2.SetTrigger("trig");
             i++;
-            
-            if(i< _polosi.Length)
+            _meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
+            if (i< _polosi.Length)
             {
                 _polosi[i].SetActive(true);
             }
@@ -62,7 +63,7 @@ public class MeatMiniGame : MonoBehaviour
                 Player.canmove = true;
                 for(int j=0;j<meatCountInThis;j++)
                 {
-                    Debug.Log(_polosi.Length);
+                    //Debug.Log(_polosi.Length);
                     _pickUp.PickUping(12, 1, _inventory, _meatImage,false);
                 }
                 meatCountInThis = i = 0;
@@ -83,25 +84,20 @@ public class MeatMiniGame : MonoBehaviour
     {
         if(Array.IndexOf(_inventory.ItemID, 0)!=-1 && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
-            for(int i=0;i<_meats.Length;i++)
+            _meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
+            for (int j=0;j<_meats.Length;j++)
             {
-                _meats[i].SetActive(true);
+                _meats[j].SetActive(true);
             }
+            for(int j = 0; j < 4; j++) { _polosi[j].SetActive(false); }
+            i = 0;
             _polosi[0].SetActive(true);
             InGame = true;
             Player.canmove = false;
             _miniGameUI.SetActive(true);
             _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = false;
             
-        }
-        if(Input.GetKeyDown(KeyCode.Escape) && InGame)
-        {
-            InGame = false;
-            Player.canmove = true;
-            _miniGameUI.SetActive(false);
-            _meatTextObject.SetActive(true);
-        }
-        _meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
+        } 
         
     }
     private void OnTriggerEnter(Collider other)

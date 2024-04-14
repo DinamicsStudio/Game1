@@ -11,6 +11,7 @@ public class Slot : MonoBehaviour
     {
         if (_inventory.ObjCountInSlot[_slotNumber]==0)
         {
+            _inventory.SlotStack[_slotNumber] = 1;
             _inventory.ItemID[_slotNumber] = -1;
             foreach (Transform child in transform)
             {
