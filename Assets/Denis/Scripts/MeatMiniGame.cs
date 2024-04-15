@@ -26,7 +26,6 @@ public class MeatMiniGame : MonoBehaviour
     [SerializeField] private GameObject _meatImage;
     [SerializeField] private GameObject[] _meats;
     [SerializeField] private Animator _anim2;
-    [SerializeField] private GameObject _meatTextObject; //in game
 
     private bool _usable;
     private bool InGame;
@@ -68,7 +67,6 @@ public class MeatMiniGame : MonoBehaviour
                 }
                 meatCountInThis = i = 0;
                 _miniGameUI.SetActive(false);
-                _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = true;
                 _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
                 /*Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
@@ -95,7 +93,6 @@ public class MeatMiniGame : MonoBehaviour
             InGame = true;
             Player.canmove = false;
             _miniGameUI.SetActive(true);
-            _meatTextObject.GetComponent<TextMeshProUGUI>().enabled = false;
             
         } 
         
@@ -112,7 +109,6 @@ public class MeatMiniGame : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _usable = false;
-            _meatTextObject.SetActive(true);
         }
     }
 }

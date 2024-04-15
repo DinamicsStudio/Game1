@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -9,6 +10,8 @@ public class Inventory : MonoBehaviour
     public int[] ItemID;
     public int[] SlotStack;
     public int[] ObjCountInSlot;
+    public TMP_Text[] CountInSlotText;
+
     public GameObject[] _slots;
     //[SerializeField] private GameObject _inventoryObject; //для вкл/выкл инвентаря
     //private bool _isOn;
@@ -17,7 +20,7 @@ public class Inventory : MonoBehaviour
         //_isOn = false;
     }
     private void Update()
-    {
+    { 
         if(Input.GetKeyUp(KeyCode.Tab))
         {
             //OnInventoryClick();
