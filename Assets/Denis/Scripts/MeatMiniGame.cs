@@ -56,18 +56,16 @@ public class MeatMiniGame : MonoBehaviour
             }
             else
             {
-           
-                MeatUpdate.Invoke();
+
                 InGame = false;
                 Player.canmove = true;
-                for(int j=0;j<meatCountInThis;j++)
+                _miniGameUI.SetActive(false);
+                for (int j = 0; j < meatCountInThis; j++)
                 {
                     //Debug.Log(_polosi.Length);
-                    _pickUp.PickUping(12, 1, _inventory, _meatImage,false);
+                    _pickUp.PickUping(12, 1, _inventory, _meatImage, false);
                 }
                 meatCountInThis = i = 0;
-                _miniGameUI.SetActive(false);
-                _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
                 /*Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
                 Debug.Log(Array.IndexOf(_inventory.ItemID, 0));
@@ -82,6 +80,8 @@ public class MeatMiniGame : MonoBehaviour
     {
         if(Array.IndexOf(_inventory.ItemID, 0)!=-1 && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
+            _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 0)]--;
+            _usable = false;
             _meatPiecesText.text = "Pieces of meat: " + meatCountInThis;
             for (int j=0;j<_meats.Length;j++)
             {

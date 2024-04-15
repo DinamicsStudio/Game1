@@ -43,7 +43,6 @@ public class PickUp : MonoBehaviour
                 inventory.ItemID[i] = iD;
                 inventory.SlotStack[i] = maxInStack;
                 inventory.ObjCountInSlot[i]++;
-                inventory.CountInSlotText[i].text = inventory.ObjCountInSlot[i].ToString();
                 //Instantiate(ImageInInventory, _inventory._slots[i].transform);
                 if(del)Destroy(gameObject);
                 Debug.Log(11);
@@ -55,7 +54,6 @@ public class PickUp : MonoBehaviour
                 inventory.ItemID[i] = iD;
                 inventory.SlotStack[i] = maxInStack;
                 inventory.ObjCountInSlot[i]++;
-                inventory.CountInSlotText[i].text = inventory.ObjCountInSlot[i].ToString();
                 Instantiate(imageInInventory, inventory._slots[i].transform);
                 if(del)Destroy(gameObject);
                 break;
