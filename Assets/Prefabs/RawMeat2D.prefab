@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75b73c4f2a9728449b3eeb5a7062171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 836206244715676716, guid: 773407e01796f474e933456878fc1efe, type: 3}
+  item: {fileID: 797309254659199353, guid: a2d2b047f55caf249a32d2fa044cd7d0, type: 3}
   player: {fileID: 0}
 --- !u!222 &5208528197743457046
 CanvasRenderer:
