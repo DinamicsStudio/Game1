@@ -9753,6 +9753,7 @@ GameObject:
   - component: {fileID: 1951888297}
   - component: {fileID: 1951888296}
   - component: {fileID: 1951888295}
+  - component: {fileID: 1951888298}
   m_Layer: 0
   m_Name: Gas
   m_TagString: Untagged
@@ -9819,6 +9820,24 @@ Transform:
   - {fileID: 1215514492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1951888298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951888294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d633b950ac23d1a44a98639495c624f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniGameUI: {fileID: 1215514491}
+  _distanceForDrag: 1
+  pan: {fileID: 517945873}
+  maxDistanceFromPan: 2
+  fryingTime: 5
+  _inventory: {fileID: 408612907}
 --- !u!1 &1972162052
 GameObject:
   m_ObjectHideFlags: 0
