@@ -10,18 +10,21 @@ using static UnityEngine.GraphicsBuffer;
 public class GasMiniGame : MonoBehaviour
 {
     [SerializeField] private GameObject _miniGameUI;
+    [SerializeField] private TMP_Text fryText;
+    [SerializeField] private float fryingTime; //время жарки
+    bool isFrying = false;
+
+    private bool _usable;
+    private bool inGame;
+
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private PickUp _pickUp;
+
     [SerializeField] private float _distanceForDrag;
     [SerializeField] private Transform pan;
     [SerializeField] private float maxDistanceFromPan; //от сковородки до мяса
-    [SerializeField] private float fryingTime; //время жарки
-    private bool _usable;
-    private bool inGame;
-    bool isFrying = false;
-    [SerializeField] private Inventory _inventory;
-    [SerializeField] private PickUp _pickUp;
     [SerializeField] private RectTransform dragingMeat; //для указа позиции
     [SerializeField] private RectTransform meatStartPos;
-    [SerializeField] private TMP_Text fryText;
 
     private int meatCount;
     public GameObject ReadyMeatImage;
