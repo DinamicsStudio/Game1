@@ -9,11 +9,20 @@ public class GasMiniGame : MonoBehaviour
     [SerializeField] private float fryingTime; //время жарки
     bool isFrying = false;
 
+    [Space]
+    [Space]
+
     private bool _usable;
     private bool inGame;
 
+    [Space]
+    [Space]
+
     [SerializeField] private Inventory _inventory;
     [SerializeField] private PickUp _pickUp;
+
+    [Space]
+    [Space]
 
     [SerializeField] private float _distanceForDrag;
     [SerializeField] private Transform pan;
@@ -22,8 +31,14 @@ public class GasMiniGame : MonoBehaviour
     [SerializeField] private RectTransform meatStartPos;
     [SerializeField] private RectTransform _centerOfPan;
 
+    [Space]
+    [Space]
+
     private int meatCount;
     public GameObject ReadyMeatImage;
+    [SerializeField] private GameObject meatReadyButton;
+    [SerializeField] private GameObject meatReadyNotice; //оповещение что мясо готово
+    [SerializeField] private GameObject meatIsFryingNotice; //показывает что мясо готовится
 
     public void Draging(Transform obj)
     {
@@ -46,29 +61,27 @@ public class GasMiniGame : MonoBehaviour
     }
     private void Update()
     {
+        if(fryingTime < 0)fryingTime = 0;
         if(isFrying)
         {
+            meatIsFryingNotice.SetActive(true);
             fryingTime -= Time.deltaTime;
             fryText.text = $"Wait, meat is frying. Left {Convert.ToInt32(fryingTime)} seconds";
         }
         if (fryingTime <= 0)
         {
-            fryingTime = 5;
-            isFrying = false;
-            Debug.Log("Meat is ready!");
-            Debug.Log(meatCount);
-            for (int i = 0; i < meatCount; i++) { 
-                _pickUp.PickUping(12, 2, _inventory, ReadyMeatImage, false);
-            }
-            
-            inGame = false;
-            Player.canmove = true;
-            _miniGameUI.SetActive(false);
-            dragingMeat.position = meatStartPos.position;
-            fryText.gameObject.SetActive(false);
-       
+            meatIsFryingNotice.SetActive(false);
+            meatReadyButton.SetActive(true);
+            meatReadyNotice.SetActive(true);
         }
         if (inGame == false && Array.IndexOf(_inventory.ItemID, 1) != -1 && Input.GetKeyDown(KeyCode.E) && _usable) 
+        {
+            _usable = false;
+            inGame = true;
+            Player.canmove = false;
+            _miniGameUI.SetActive(true);
+        }
+        else if (inGame == false && Input.GetKeyDown(KeyCode.E) && _usable && isFrying) //надо для того что бы игрок смог смотреть сколько осталось жарить
         {
             _usable = false;
             inGame = true;
@@ -81,6 +94,22 @@ public class GasMiniGame : MonoBehaviour
             Player.canmove = true;
             _miniGameUI.SetActive(false);
         }
+    }
+    public void MeatReady()
+    {
+        fryingTime = 5;
+        isFrying = false;
+        meatReadyButton.SetActive(false);
+        meatReadyNotice.SetActive(false);
+        for (int i = 0; i < meatCount; i++)
+        {
+            _pickUp.PickUping(12, 2, _inventory, ReadyMeatImage, false);
+        }
+        inGame = false;
+        Player.canmove = true;
+        _miniGameUI.SetActive(false);
+        dragingMeat.position = meatStartPos.position;
+        fryText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
