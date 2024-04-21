@@ -49,6 +49,7 @@ public class GasMiniGame : MonoBehaviour
     [SerializeField] private Image meatImage;
     [SerializeField] private Sprite rawMeatSprite; //сырое
     [SerializeField] private Sprite friedMeatSprite; //жаренное
+    [SerializeField] private GameObject[] meatOnTable;
 
 
     public void Draging(Transform obj)
@@ -111,6 +112,26 @@ public class GasMiniGame : MonoBehaviour
         }
         if (inGame == false && Array.IndexOf(_inventory.ItemID, 1) != -1 && Input.GetKeyDown(KeyCode.E) && _usable) 
         {
+            int meatInSlot = _inventory.ObjCountInSlot[Array.IndexOf(_inventory.ItemID, 1)]; ;
+            if(meatInSlot == 1)
+            {
+                meatOnTable[0].gameObject.SetActive(true);
+                meatOnTable[1].gameObject.SetActive(false);
+                meatOnTable[2].gameObject.SetActive(false);
+            }
+            if (meatInSlot == 2)
+            {
+                meatOnTable[0].gameObject.SetActive(true);
+                meatOnTable[1].gameObject.SetActive(true);
+                meatOnTable[2].gameObject.SetActive(false);
+
+            }
+            if (meatInSlot >= 3)
+            {
+                meatOnTable[0].gameObject.SetActive(true);
+                meatOnTable[1].gameObject.SetActive(true);
+                meatOnTable[2].gameObject.SetActive(true);
+            }
             _usable = false;
             inGame = true;
             Player.canmove = false;
@@ -140,13 +161,16 @@ public class GasMiniGame : MonoBehaviour
         meatImage.sprite = rawMeatSprite;
         for (int i = 0; i < meatCount; i++)
         {
-            _pickUp.PickUping(12, 2, _inventory, ReadyMeatImage, false);
+            _pickUp.PickUping(meatCount, 2, _inventory, ReadyMeatImage, false);
         }
         inGame = false;
         Player.canmove = true;
         _miniGameUI.SetActive(false);
         dragingMeat.position = meatStartPos.position;
         fryText.gameObject.SetActive(false);
+        meatOnTable[0].gameObject.SetActive(false);
+        meatOnTable[1].gameObject.SetActive(false);
+        meatOnTable[2].gameObject.SetActive(false);
     }
     public void MeatInTrash()
     {
