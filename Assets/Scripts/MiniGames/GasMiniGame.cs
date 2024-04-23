@@ -27,7 +27,7 @@ public class GasMiniGame : MonoBehaviour
     [Space,Space]
 
     [SerializeField] private float _distanceForDrag;
-    [SerializeField] private float maxDistanceFromObj; //от взаимодействующего предмета
+    [SerializeField] private float maxDistanceFromObj;
 
     [Space, Space]
 
@@ -82,8 +82,6 @@ public class GasMiniGame : MonoBehaviour
         {
             overCookTime -= Time.deltaTime;
         }
-        if(overCookTime < 0)overCookTime = 0;
-        if(fryingTime < 0)fryingTime = 0;
         if(isFrying)
         {
             meatNotifications[0].SetActive(true);
@@ -94,6 +92,7 @@ public class GasMiniGame : MonoBehaviour
         {
             fryText.text = $"You have {Convert.ToInt32(overCookTime)} seconds to take meat!";
             isFried = true;
+            isFrying = false;
             meatImage.sprite = friedMeatSprite;
             meatNotifications[0].SetActive(false);
             meatReadyButton.SetActive(true);
