@@ -411,13 +411,14 @@ GameObject:
   - component: {fileID: 106360363}
   - component: {fileID: 106360362}
   - component: {fileID: 106360361}
+  - component: {fileID: 106360366}
   m_Layer: 5
   m_Name: Meat 2
-  m_TagString: Untagged
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &106360360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -427,7 +428,7 @@ RectTransform:
   m_GameObject: {fileID: 106360359}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215514492}
@@ -520,8 +521,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 106360366}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: EndDrag
           m_Mode: 2
           m_Arguments:
@@ -536,8 +537,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 106360366}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: Draging
           m_Mode: 2
           m_Arguments:
@@ -586,6 +587,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106360359}
   m_CullTransparentMesh: 1
+--- !u!114 &106360366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106360359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793b970b6516e974c9163e4beceed724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceForDrag: 150
+  _centerOfPan: {fileID: 888308757}
+  maxDistanceFromObj: 350
+  _inventory: {fileID: 408612907}
+  _gasMiniGame: {fileID: 1951888298}
+  _centerOfRubbish: {fileID: 726318589}
+  _pos: {x: 711.2498, y: -14.25}
 --- !u!4 &129071229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 272b62b68faacc841a610648de40ce2d, type: 3}
@@ -4161,7 +4181,6 @@ MonoBehaviour:
   - {fileID: 880789732}
   - {fileID: 1057357638}
   _anim2: {fileID: 0}
-  i: 0
 --- !u!1 &960560734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,13 +7470,14 @@ GameObject:
   - component: {fileID: 1389492989}
   - component: {fileID: 1389492988}
   - component: {fileID: 1389492987}
+  - component: {fileID: 1389492992}
   m_Layer: 5
   m_Name: Meat 3
-  m_TagString: Untagged
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1389492986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7467,7 +7487,7 @@ RectTransform:
   m_GameObject: {fileID: 1389492985}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215514492}
@@ -7560,8 +7580,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 1389492992}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: EndDrag
           m_Mode: 2
           m_Arguments:
@@ -7576,8 +7596,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 1389492992}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: Draging
           m_Mode: 2
           m_Arguments:
@@ -7626,6 +7646,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389492985}
   m_CullTransparentMesh: 1
+--- !u!114 &1389492992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389492985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793b970b6516e974c9163e4beceed724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceForDrag: 150
+  _centerOfPan: {fileID: 888308757}
+  maxDistanceFromObj: 350
+  _inventory: {fileID: 408612907}
+  _gasMiniGame: {fileID: 1951888298}
+  _centerOfRubbish: {fileID: 726318589}
+  _pos: {x: 711.2498, y: -325.25}
 --- !u!1 &1436594703
 GameObject:
   m_ObjectHideFlags: 0
@@ -8544,7 +8583,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.990566, g: 0.98380744, b: 0.9017889, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
@@ -10400,13 +10439,14 @@ GameObject:
   - component: {fileID: 1875775673}
   - component: {fileID: 1875775672}
   - component: {fileID: 1875775671}
+  - component: {fileID: 1875775676}
   m_Layer: 5
   m_Name: Meat 1
-  m_TagString: Untagged
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1875775670
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10416,7 +10456,7 @@ RectTransform:
   m_GameObject: {fileID: 1875775669}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215514492}
@@ -10509,8 +10549,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 1875775676}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: EndDrag
           m_Mode: 2
           m_Arguments:
@@ -10525,8 +10565,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1951888298}
-          m_TargetAssemblyTypeName: GasMiniGame, Assembly-CSharp
+        - m_Target: {fileID: 1875775676}
+          m_TargetAssemblyTypeName: FryingMeatScript, Assembly-CSharp
           m_MethodName: Draging
           m_Mode: 2
           m_Arguments:
@@ -10575,6 +10615,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875775669}
   m_CullTransparentMesh: 1
+--- !u!114 &1875775676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875775669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793b970b6516e974c9163e4beceed724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceForDrag: 150
+  _centerOfPan: {fileID: 888308757}
+  maxDistanceFromObj: 350
+  _inventory: {fileID: 408612907}
+  _gasMiniGame: {fileID: 1951888298}
+  _centerOfRubbish: {fileID: 726318589}
+  _pos: {x: 711.2498, y: 306}
 --- !u!1 &1887089403
 GameObject:
   m_ObjectHideFlags: 0
@@ -11186,17 +11245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d633b950ac23d1a44a98639495c624f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _miniGameUI: {fileID: 1215514491}
   fryText: {fileID: 363151028}
+  fryingTimeBase: 10
+  overCookTimeBase: 10
+  fryingTime: 10
+  overCookTime: 10
   _inventory: {fileID: 408612907}
   _pickUp: {fileID: 2102675279}
   _distanceForDrag: 150
   maxDistanceFromObj: 250
+  _miniGameUI: {fileID: 1215514491}
   rubbishBin: {fileID: 288504253}
-  _centerOfRubbish: {fileID: 726318589}
-  dragingMeat: {fileID: 1875775670}
-  meatStartPos: {fileID: 1054950145}
-  _centerOfPan: {fileID: 888308757}
   ReadyMeatImage: {fileID: 1481274395972385989, guid: 2016e29034c596b4c90ccb9b0861e993, type: 3}
   meatReadyButton: {fileID: 1935666033}
   meatNotifications:
@@ -11210,6 +11269,7 @@ MonoBehaviour:
   - {fileID: 1875775669}
   - {fileID: 106360359}
   - {fileID: 1389492985}
+  Sum: 0
 --- !u!1 &1972162052
 GameObject:
   m_ObjectHideFlags: 0
