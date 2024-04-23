@@ -28,8 +28,8 @@ public class MeatMiniGame : MonoBehaviour
     [SerializeField] private Animator _anim2;
 
     private bool _usable;
+    private int i;
     private bool InGame;
-    [SerializeField]private int i;
     public void Draging(Transform obj)
     {
         //Debug.Log(1);
