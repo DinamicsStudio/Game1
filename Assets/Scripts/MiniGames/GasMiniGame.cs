@@ -54,6 +54,7 @@ public class GasMiniGame : MonoBehaviour
         {
             Debug.Log(11111111);
             _isStarted = isFrying = true;
+            meatNotifications[0].SetActive(true);
         }
         
         if (isFried)
@@ -63,7 +64,6 @@ public class GasMiniGame : MonoBehaviour
         
         if(isFrying)
         {
-            meatNotifications[0].SetActive(true);
             fryingTime -= Time.deltaTime;
             fryText.text = $"Wait, meat is frying. Left {Convert.ToInt32(fryingTime)} seconds";
         }
@@ -71,26 +71,23 @@ public class GasMiniGame : MonoBehaviour
 
         if (fryingTime <= 0 && isFrying == true)
         {
-            fryText.text = $"You have {Convert.ToInt32(overCookTime)} seconds to take meat!";
             isFried = true;
             isFrying = false;
-            meatImage.sprite = friedMeatSprite;
             meatNotifications[0].SetActive(false);
             meatReadyButton.SetActive(true);
             meatNotifications[1].SetActive(true);
-            
+            fryText.text = $"You have {Convert.ToInt32(overCookTime)} seconds to take meat!";
+
         }
 
         if (overCookTime <= 0 && isFried == true)
         {
             isFried = false;
+            meatNotifications[1].SetActive(false);
+            meatReadyButton.SetActive(false);
             meatNotifications[2].SetActive(true);
             rubbishBin.SetActive(true);
             fryText.text = "The meat was burnt";
-            meatImage.color = Color.gray;
-            meatNotifications[0].SetActive(false);
-            meatReadyButton.SetActive(false);
-            meatNotifications[1].SetActive(false);
         }
 
                                                             ////////////// ÒÓÒ ÌÅÕÀÍÍÈÊÀ ÀÊÒÈÂÀÖÈÈ ÈÍÒÅÐÔÅÉÑÀ \\\\\\\\\\\\\\\

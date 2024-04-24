@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,6 +7,7 @@ public class FryingMeatScript : MonoBehaviour
 {
     [SerializeField] private float _distanceForDrag;
     [SerializeField] private RectTransform _centerOfPan;
+    [SerializeField] private RectTransform _centerOfRubbish;
 
     [Space, Space]
 
@@ -17,19 +19,20 @@ public class FryingMeatScript : MonoBehaviour
 
     private int _block;
     private bool isFrying = false;
-    [SerializeField] private RectTransform _centerOfRubbish;
 
     [Space, Space]
 
     [SerializeField] private Vector2 _pos;
-    public void Draging(Transform obj)
+    [SerializeField] private Sprite _readyMeat;
+    [SerializeField] private Sprite _overReadyMeat;
+    public void Draging(RectTransform obj)
     {
         if (Vector3.Distance(obj.position, Input.mousePosition) <= _distanceForDrag)
         {
             obj.position = Input.mousePosition;
         }
     }
-    public void EndDrag(Transform obj)
+    public void EndDrag(RectTransform obj)
     {
         float panDistance = Vector3.Distance(obj.position, _centerOfPan.position);
         if (panDistance <= maxDistanceFromObj && isFrying == false && _block==0)
@@ -46,9 +49,14 @@ public class FryingMeatScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void Update()
     {
-        Debug.Log(12);
+        if (_gasMiniGame.fryingTime <= 0 && _gasMiniGame.overCookTime > 0) gameObject.GetComponent<Sprite>().sprite = _readyMeat;
+        if (_gasMiniGame.overCookTime <= 0) { gameObject.GetComponent<Image>().tintColor = Color.black; Debug.Log(12345); }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
         if (col.gameObject.CompareTag("Meat")) _block++;
     }
 
